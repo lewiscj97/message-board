@@ -1,4 +1,8 @@
-<% @posts.each do | post |%>
+<% @posts.reverse_each do | post |%>
 <p><%=post.name%></p>
 <p><%=post.message%></p>
 <% end %>
+
+<form action="/posts/new" method="get">
+  <input type="submit" value="New Post">
+<form>
