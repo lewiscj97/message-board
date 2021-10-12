@@ -2,6 +2,7 @@ require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'pg'
+require 'web_helper'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -12,11 +13,11 @@ SimpleCov.start
 
 ENV['ENVIRONMENT'] = 'test'
 
-# RSpec.configure do |config|
-#   config.before(:each) do
-#     drop_test_db
-#   end
-# end
+RSpec.configure do |config|
+  config.before(:each) do
+    reset_test_database
+  end
+end
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
