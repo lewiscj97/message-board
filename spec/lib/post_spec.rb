@@ -17,4 +17,14 @@ describe Post do
       expect(response.first['message']).to eq post.message
     end
   end
+
+  describe "#all" do
+    it "returns all the posts as Post objects" do
+      post = Post.create('Lewis Jones', 'This is my first message!')
+      
+      response = Post.all
+      expect(response.first.name).to eq post.name
+      expect(response.first.message).to eq post.message
+    end
+  end
 end
