@@ -1,9 +1,10 @@
 require 'pg'
 
 class Post
-  attr_reader :name, :message
+  attr_reader :id, :name, :message
 
-  def initialize(name, message)
+  def initialize(id, name, message)
+    @id = id
     @name = name
     @message = message
   end
@@ -17,8 +18,8 @@ class Post
       # :nocov:
     end
 
-    connection.exec("INSERT INTO posts(name, message) VALUES('#{name}', '#{message}');")
-    Post.new(name, message)
+    result = connection.exec("INSERT INTO posts(name, message) VALUES('#{name}', '#{message}') RETURNING id, name, message;")
+    post = Post.new(result.first['id'], result.first['name'], result.first['message'])
   end
 
   def self.all
@@ -31,6 +32,6 @@ class Post
     end
 
     response = connection.exec("SELECT * FROM posts;")
-    response.map { |post| Post.new(post['name'], post['message']) }
+    response.map { |post| Post.new(post['id'], post['name'], post['message']) }
   end
 end

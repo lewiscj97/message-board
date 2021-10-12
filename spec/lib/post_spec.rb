@@ -23,6 +23,7 @@ describe Post do
       post = Post.create('Lewis Jones', 'This is my first message!')
       
       response = Post.all
+      expect(response.first.id).to eq post.id
       expect(response.first.name).to eq post.name
       expect(response.first.message).to eq post.message
     end
