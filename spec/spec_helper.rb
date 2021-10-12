@@ -11,11 +11,11 @@ SimpleCov.start
 
 ENV['ENVIRONMENT'] = 'test'
 
-RSpec.configure do |config|
-  config.before(:each) do
-    drop_test_db
-  end
-end
+# RSpec.configure do |config|
+#   config.before(:each) do
+#     drop_test_db
+#   end
+# end
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
