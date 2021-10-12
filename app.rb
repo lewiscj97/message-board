@@ -2,10 +2,6 @@ require 'sinatra'
 require './lib/post'
 
 class MessageBoard < Sinatra::Base
-  get '/' do
-    "Hello World!"
-  end
-
   get '/posts/new' do
     erb(:new_post)
   end
@@ -16,6 +12,7 @@ class MessageBoard < Sinatra::Base
   end
 
   get '/posts' do
+    @posts = Post.all
     erb(:posts)
   end
 end

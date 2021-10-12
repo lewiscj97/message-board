@@ -1,3 +1,5 @@
+require 'pg'
+
 class Post
   attr_reader :name, :message
 
