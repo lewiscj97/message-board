@@ -1,7 +1,19 @@
-<form id='post_form' style='text-align: center;' method="post" action="/new_post">
+<style>
+  body {
+    text-align: center;
+  }
+
+  #post_form {
+    text-align: center;
+  }
+</style>
+
+<h1>Message Board</h1>
+
+<form id='post_form' method="post" action="/new_post">
   <label for="name">Name</label><br>
-  <input name="name" type="text"><br>
+  <input name="name" type="text"><br><br>
   <label for="message">Message</label><br>
-  <textarea name="message"></textarea><br>
+  <textarea name="message" rows="4" cols="50"></textarea><br>
   <input value="Submit" type="submit">
 </form>
