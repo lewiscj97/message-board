@@ -36,4 +36,15 @@ feature 'Message Board' do
 
     expect(page).to have_content 'There are no posts yet!'
   end
+
+  scenario 'is able to click button to view posts from /posts/new' do
+    Post.create('Lewis Jones', 'This is an interesting first note')
+
+    visit('/posts/new')
+
+    click_button('View Posts')
+
+    expect(page).to have_content 'Lewis Jones'
+    expect(page).to have_content 'This is an interesting first note'
+  end
 end
