@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+}
+
+.section {
+  border-style: solid;
+  border-color: red;
+  margin: 10;
+}
+
+.button {
+  margin: 0 0 20;
+}
+
+.author {
+  font-weight: bold;
+}

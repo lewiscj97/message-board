@@ -1,24 +1,10 @@
-<style>
-  body {
-    text-align: center;
-  }
-
-  .post {
-    border-style: solid;
-    border-color: red;
-    padding: 10;
-  }
-</style>
-
-<h1>Message Board</h1>
-
 <form action="/posts/new" method="get">
-  <input type="submit" value="New Post">
+  <input class="button" type="submit" value="New Post">
 <form>
 
 <% @posts.reverse_each do | post |%>
-<p class="post">
-  <%=post.name%><br>
-  <%=post.message%><br>
-</p>
+  <section class="post section">
+    <p class="post author"><%=post.name%></p>
+    <p class="post message"><%=post.message%></p>
+  </section>
 <% end %>
