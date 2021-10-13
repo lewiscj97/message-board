@@ -30,4 +30,10 @@ feature 'Message Board' do
 
     expect(page).to have_current_path '/posts/new'
   end
+
+  scenario 'is told there are no posts yet' do
+    visit('/posts')
+
+    expect(page).to have_content 'There are no posts yet!'
+  end
 end
