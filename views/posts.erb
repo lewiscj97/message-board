@@ -2,6 +2,10 @@
   <input class="button" type="submit" value="New Post">
 <form>
 
+<% if @posts.empty? %>
+  <p>There are no posts yet!</p>
+<% end%>
+
 <% @posts.reverse_each do | post |%>
   <section class="post section">
     <p class="post author"><%=post.name%></p>
