@@ -4,6 +4,8 @@ require './lib/comment'
 require './lib/user'
 
 class MessageBoard < Sinatra::Base
+  enable :sessions
+
   get '/' do
     erb(:index)
   end
@@ -18,15 +20,22 @@ class MessageBoard < Sinatra::Base
 
   post '/authenticate' do
     result = User.authenticate(params[:username], params[:password])
-    result ? redirect('/posts') : redirect('/sign_in')
+    if result
+      session[:user] = params[:username]
+      redirect('/posts')
+    else
+      redirect('/sign_in')
+    end
   end
 
   post '/new_user' do
     User.create(params[:username], params[:password])
+    session[:user] = params[:username]
     redirect('/posts')
   end
   
   get '/posts' do
+    p session[:user]
     @posts = Post.all
     erb(:posts)
   end
