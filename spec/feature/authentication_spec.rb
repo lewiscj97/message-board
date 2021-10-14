@@ -4,6 +4,7 @@ feature 'authentication' do
 
     fill_in 'username', with: 'foo'
     fill_in 'password', with: 'password'
+    click_button 'Submit'
 
     expect(page).to have_current_path '/posts'
 
@@ -12,7 +13,7 @@ feature 'authentication' do
     
     user = response.first
 
-    expect(user['name']).to eq 'testing'
+    expect(user['name']).to eq 'foo'
     expect(user['password']).to eq 'password'
   end
 end
