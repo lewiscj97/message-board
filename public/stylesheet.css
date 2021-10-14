@@ -4,6 +4,7 @@ body {
 
 .section {
   border-style: solid;
+  border-radius: 5px;
   border-color: red;
   margin: 10;
 }

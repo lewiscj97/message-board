@@ -11,8 +11,9 @@ feature 'Message Board' do
   end
 
   scenario 'viewing posts already added' do
-    Post.create('Lewis Jones', 'This is an interesting first note')
-    Post.create('Foo', 'This is my lovely second note')
+    connection = PG.connect(dbname: 'message_board_test')
+    connection.exec("INSERT INTO posts(name, message) VALUES('Lewis Jones', 'This is an interesting first note');")
+    connection.exec("INSERT INTO posts(name, message) VALUES('Foo', 'This is my lovely second note');")
 
     visit('/posts')
     
@@ -38,7 +39,8 @@ feature 'Message Board' do
   end
 
   scenario 'is able to click button to view posts from /posts/new' do
-    Post.create('Lewis Jones', 'This is an interesting first note')
+    connection = PG.connect(dbname: 'message_board_test')
+    connection.exec("INSERT INTO posts(name, message) VALUES('Lewis Jones', 'This is an interesting first note');")
 
     visit('/posts/new')
 
@@ -49,11 +51,18 @@ feature 'Message Board' do
   end
 
   scenario 'user sees most recent posts first' do
-    Post.create('Lewis', 'This is an interesting first note')
-    Post.create('Ana', 'This is my second note')
+    connection = PG.connect(dbname: 'message_board_test')
+    connection.exec("INSERT INTO posts(name, message) VALUES('Lewis', 'This is an interesting first note');")
+    connection.exec("INSERT INTO posts(name, message) VALUES('Ana', 'This is my second note');")
 
     visit('/posts')
     
     expect(page).to have_content "Ana\nThis is my second note\nLewis\nThis is an interesting first note"
+  end
+end
+
+feature 'comments' do
+  scenario 'user is able to comment on a post' do
+    
   end
 end

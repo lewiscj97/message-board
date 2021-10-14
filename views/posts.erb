@@ -1,13 +1,13 @@
 <form action="/posts/new" method="get">
   <input class="button" type="submit" value="New Post">
-<form>
+</form>
 
 <% if @posts.empty? %>
   <p>There are no posts yet!</p>
 <% end%>
 
 <% @posts.each do | post |%>
-  <section class="post section">
+  <section class="post section" id="<%=post.id%>">
     <p class="post author"><%=post.name%></p>
     <p class="post message"><%=post.message%></p>
   </section>
