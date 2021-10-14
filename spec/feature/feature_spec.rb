@@ -47,4 +47,13 @@ feature 'Message Board' do
     expect(page).to have_content 'Lewis Jones'
     expect(page).to have_content 'This is an interesting first note'
   end
+
+  scenario 'user sees most recent posts first' do
+    Post.create('Lewis', 'This is an interesting first note')
+    Post.create('Ana', 'This is my second note')
+
+    visit('/posts')
+    
+    expect(page).to have_content "Ana\nThis is my second note\nLewis\nThis is an interesting first note"
+  end
 end
