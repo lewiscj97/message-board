@@ -35,11 +35,11 @@ describe Comment do
       Comment.create('Foo', 'This is a comment', post_id)
       Comment.create('Bar', 'This is another comment', post_id)
 
-      # get comments by id, returning an array of comment objects
+      # get comments by id, returning an array of comment objects in reverse order
       comments = Comment.get_comments_by_post_id(post_id)
 
-      first_comment = comments[0]
-      second_comment = comments[1]
+      first_comment = comments[1]
+      second_comment = comments[0]
 
       expect(first_comment.name).to eq 'Foo'
       expect(first_comment.comment).to eq 'This is a comment'

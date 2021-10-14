@@ -57,7 +57,7 @@ feature 'Message Board' do
 
     visit('/posts')
     
-    expect(page).to have_content "Ana\nThis is my second note\nLewis\nThis is an interesting first note"
+    expect(page).to have_content "This is my second note\nAna\nThis is an interesting first note\nLewis"
   end
 end
 

@@ -1,7 +1,7 @@
-<p class="post">Post: <%=@post.message%></p>
+<p class="post"><%=@post.message%></p>
 <form method="post" action="/<%=@post.id%>/new_comment">
   <label for="name">Name</label><br>
-  <input name="name" type="text"><br><br>
+  <input class="name" name="name" type="text"><br><br>
   <label for="comment">Comment</label><br>
   <textarea name="comment" rows="4" cols="50"></textarea><br>
   <input class="button submit" value="Submit" type="submit">

@@ -39,7 +39,8 @@ class Comment
       "SELECT comments.id, comments.name, comment, message_id
       FROM comments
       JOIN posts ON comments.message_id=posts.id
-      WHERE message_id=$1;", [post_id]
+      WHERE message_id=$1
+      ORDER BY comments.id DESC;", [post_id]
     )
     
     result.map { | comment | Comment.new(comment['id'], comment['name'], comment['comment'], comment['message_id']) }
