@@ -23,6 +23,8 @@ class User
     end
 
     result = connection.exec_params("SELECT * FROM users WHERE name=$1;", [name])
+
+    return false if result.first.nil?
     
     result.first['password'] == password ? true : false
   end

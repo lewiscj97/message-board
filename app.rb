@@ -17,7 +17,8 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/authenticate' do
-    
+    result = User.authenticate(params[:username], params[:password])
+    result ? redirect('/posts') : redirect('/sign_in')
   end
 
   post '/new_user' do
