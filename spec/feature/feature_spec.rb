@@ -63,6 +63,18 @@ end
 
 feature 'comments' do
   scenario 'user is able to comment on a post' do
-    
+    post = Post.create('Foo', 'This is a message')
+
+    visit('/posts')
+
+    within("section[@id=\"#{post.id}\"]") do
+      click_button('Comment')
+    end
+
+    fill_in 'name', with: 'Bar'
+    fill_in 'comment', with: 'This is my comment'
+    click_button 'Submit'
+
+    expect(page).to have_content "This is my comment"
   end
 end
