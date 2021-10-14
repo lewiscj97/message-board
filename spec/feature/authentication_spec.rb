@@ -24,4 +24,17 @@ feature 'authentication' do
     expect(user['name']).to eq 'foo'
     expect(user['password']).to eq 'password'
   end
+
+  scenario 'able to sign in' do
+    connection = PG.connect(dbname: 'message_board_test')
+    response = connection.exec("INSERT INTO users(name, password) VALUES('testing', 'password');")
+
+    visit('/sign_in')
+
+    fill_in 'username', with: 'testing'
+    fill_in 'password', with: 'password'
+    click_button 'Submit'
+
+    expect(page).to have_current_path '/posts'
+  end
 end

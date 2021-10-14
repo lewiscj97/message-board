@@ -12,6 +12,14 @@ class MessageBoard < Sinatra::Base
     erb(:sign_up)
   end
 
+  get '/sign_in' do
+    erb(:sign_in)
+  end
+
+  post '/authenticate' do
+    p params
+  end
+
   post '/new_user' do
     User.create(params[:username], params[:password])
     redirect('/posts')
