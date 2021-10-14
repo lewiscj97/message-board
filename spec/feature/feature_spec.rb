@@ -63,7 +63,11 @@ end
 
 feature 'comments' do
   scenario 'user is able to comment on a post' do
-    post = Post.create('Foo', 'This is a message')
+    connection = PG.connect(dbname: 'message_board_test')
+    connection.exec("INSERT INTO posts(name, message) VALUES('Foo', 'This is a message');")
+
+    result = connection.exec("SELECT * FROM posts;")
+    post = Post.find(result.first['id'])
 
     visit('/posts')
 
@@ -75,6 +79,8 @@ feature 'comments' do
     fill_in 'comment', with: 'This is my comment'
     click_button 'Submit'
 
-    expect(page).to have_content "This is my comment"
+    data = connection.exec("SELECT * FROM comments;")
+    expect(data.first['name']).to eq 'Bar'
+    expect(data.first['comment']).to eq 'This is my comment'
   end
 end
