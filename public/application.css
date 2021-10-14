@@ -1,0 +1,52 @@
+body {
+  text-align: center;
+  background-color: antiquewhite;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+textarea {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.section {
+  border-style: solid;
+  border-radius: 15px;
+  border-color: red;
+  margin: 10;
+}
+
+.button {
+  margin: 0 0 20;
+}
+
+.author {
+  font-weight: bold;
+}
+
+.submit {
+  margin: 10 0 0 0;
+}
+
+.comment {
+  border-style: solid;
+  border-radius: 15px;
+  border-color: lightskyblue;
+  margin: 10;
+}
+
+.heading_comment {
+  font-weight: bold;
+  font-size: large;
+}
+
+.name {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
