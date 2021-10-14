@@ -28,4 +28,19 @@ describe Post do
       expect(response.first.message).to eq post.message
     end
   end
+
+  describe "#find" do
+    it "returns a post object when passed the post_id" do
+      connection = PG.connect(dbname: 'message_board_test')
+      connection.exec("INSERT INTO posts(name, message) VALUES('Lewis', 'Messages');")
+      
+      data = connection.exec("SELECT * FROM posts;")
+      post_id = data.first['id']
+
+      post = Post.find(post_id)
+
+      expect(post.name).to eq 'Lewis'
+      expect(post.message).to eq 'Messages'
+    end
+  end
 end
