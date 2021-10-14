@@ -83,4 +83,19 @@ feature 'comments' do
     expect(data.first['name']).to eq 'Bar'
     expect(data.first['comment']).to eq 'This is my comment'
   end
+
+  scenario 'user is able to view comments on a post' do
+    connection = PG.connect(dbname: 'message_board_test')
+    connection.exec("INSERT INTO posts(name, message) VALUES('Foo', 'This is a message');")
+
+    result = connection.exec("SELECT * FROM posts;")
+    post = Post.find(result.first['id'])
+
+    connection.exec("INSERT INTO comments(name, comment, message_id) VALUES('Bar', 'This is a comment', '#{post.id}');")
+
+    visit('/posts')
+
+    expect(page).to have_content 'Bar'
+    expect(page).to have_content 'This is a comment'
+  end
 end
