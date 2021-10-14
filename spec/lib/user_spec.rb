@@ -14,4 +14,13 @@ describe User do
       expect(user['password']).to eq 'password'
     end
   end
+
+  describe "#authenticate" do
+    it 'returns true when the details match' do
+      connection = PG.connect(dbname: 'message_board_test')
+      connection.exec("INSERT INTO users(name, password) VALUES('lewis','testing');")
+
+      expect(User.authenticate('lewis', 'testing')).to eq true
+    end
+  end
 end

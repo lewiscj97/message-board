@@ -17,7 +17,7 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/authenticate' do
-    p params
+    
   end
 
   post '/new_user' do
