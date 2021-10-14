@@ -18,7 +18,7 @@ class Post
       # :nocov:
     end
 
-    result = connection.exec("INSERT INTO posts(name, message) VALUES('#{name}', '#{message}') RETURNING id, name, message;")
+    result = connection.exec_params("INSERT INTO posts(name, message) VALUES($1, $2) RETURNING id, name, message;", [name, message])
     post = Post.new(result.first['id'], result.first['name'], result.first['message'])
   end
 
