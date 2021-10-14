@@ -35,4 +35,21 @@ class Post
       "SELECT * FROM posts ORDER BY id DESC;")
     response.map { |post| Post.new(post['id'], post['name'], post['message']) }
   end
+
+  def self.find(id)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect :dbname => 'message_board_test'
+    else
+      # :nocov:
+      connection = PG.connect :dbname => 'message_board'
+      # :nocov:
+    end
+
+    response = connection.exec_params(
+      "SELECT * FROM posts
+      WHERE id=$1", [id]
+    )
+    
+    Post.new(response.first['id'], response.first['name'], response.first['message'])
+  end
 end
