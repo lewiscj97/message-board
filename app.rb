@@ -15,4 +15,9 @@ class MessageBoard < Sinatra::Base
     @posts = Post.all
     erb(:posts)
   end
+
+  post '/:id/comment' do
+    @post_id = params[:id]
+    erb(:comment)
+  end
 end
