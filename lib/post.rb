@@ -31,7 +31,8 @@ class Post
       # :nocov:
     end
 
-    response = connection.exec("SELECT * FROM posts;")
+    response = connection.exec(
+      "SELECT * FROM posts ORDER BY id DESC;")
     response.map { |post| Post.new(post['id'], post['name'], post['message']) }
   end
 end
