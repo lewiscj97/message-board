@@ -1,3 +1,5 @@
+require 'user'
+
 describe User do
   describe "#create" do
     it 'creates a new user with a password' do
