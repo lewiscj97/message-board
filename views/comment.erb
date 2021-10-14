@@ -1,5 +1,5 @@
 <p class="post">Post: <%=@post.message%></p>
-<form method="post" action="/new_comment">
+<form method="post" action="/<%=@post.id%>/new_comment">
   <label for="name">Name</label><br>
   <input name="name" type="text"><br><br>
   <label for="comment">Comment</label><br>

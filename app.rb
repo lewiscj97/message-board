@@ -1,5 +1,6 @@
 require 'sinatra'
 require './lib/post'
+require './lib/comment'
 
 class MessageBoard < Sinatra::Base
   get '/posts/new' do
@@ -16,8 +17,13 @@ class MessageBoard < Sinatra::Base
     erb(:posts)
   end
 
-  post '/:id/comment' do
+  get '/:id/comment' do
     @post = Post.find(params[:id])
     erb(:comment)
+  end
+
+  post '/:id/new_comment' do
+    Comment.create(params['name'], params['comment'], params['id'])
+    redirect('/posts')
   end
 end

@@ -10,7 +10,7 @@
   <section class="post section" id="<%=post.id%>">
     <p class="post author"><%=post.name%></p>
     <p class="post message"><%=post.message%></p>
-    <form action="/<%=post.id%>/comment" method="post">
+    <form action="/<%=post.id%>/comment" method="get">
       <input type="submit" value="Comment">
     </form>
   </section>
