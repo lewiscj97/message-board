@@ -37,4 +37,14 @@ feature 'authentication' do
 
     expect(page).to have_current_path '/posts'
   end
+
+  scenario "unable to sign in if details don't exist" do
+    visit('/sign_in')
+
+    fill_in 'username', with: 'testing'
+    fill_in 'password', with: 'password'
+    click_button 'Submit'
+
+    expect(page).to have_current_path '/sign_in'
+  end
 end
