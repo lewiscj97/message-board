@@ -1,7 +1,7 @@
 require 'comment'
 require 'post'
 
-decribe Comment do
+describe Comment do
   describe '#create' do
     it 'lets the user create a new comment on a post' do
       post = Post.create('Lewis Jones', 'This is my first message!')
